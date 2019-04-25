@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+						
+<mapper namespace="com.liyibo1110.gemsshop.store.manager.server.dao.DeliveryDao"> 
+	
+	<select id="getList" resultType="Delivery"> 
+		SELECT id, name, method, sort, store_id, 
+		add_time, update_time
+		FROM delivery
+		<where>
+			store_id=#{storeId}
+			<if test="name != null">
+				AND name LIKE concat('%',#{name},'%')
+			</if>
+		</where>
+		ORDER BY id ASC LIMIT #{offset}, #{limit}
+	</select>
+	
+	<select id="getCount" resultType="int"> 
+		SELECT COUNT(*)
+		FROM delivery
+		<where>
+			store_id=#{storeId}
+			<if test="name != null">
+				AND name LIKE concat('%',#{name},'%')
+			</if>
+		</where>
+	</select>
+	
+	<select id="getById" resultType="Delivery"> 
+		SELECT id, name, method, sort, store_id, 
+		add_time, update_time
+		FROM delivery
+		WHERE id=#{id} AND store_id=#{storeId}
+	</select>
+	
+	<insert id="create" parameterType="Delivery" useGeneratedKeys="true" keyProperty="id"> 
+		INSERT INTO delivery(name, method, sort, store_id, add_time, update_time) 
+		VALUES(#{delivery.name}, #{delivery.method}, #{delivery.sort}, #{delivery.storeId}, NOW(), NOW())
+	</insert>
+	
+	<insert id="modify"> 
+		UPDATE delivery SET name=#{name}, method=#{method}, sort=#{sort}, update_time=NOW() 
+		WHERE id=#{id} AND store_id=#{storeId}
+	</insert>
+	
+	<insert id="createRule"> 
+		INSERT INTO delivery_rule(delivery_id, region, first, first_fee, additional, 
+								additional_fee, store_id, add_time, update_time) 
+		VALUES(#{deliveryId}, #{region}, #{first}, #{firstFee}, #{additional}, 
+			#{additionalFee}, #{storeId}, NOW(), NOW())
+	</insert>
+	
+	<select id="getByDeliveryId" resultType="DeliveryRule"> 
+		SELECT id, delivery_id, region AS region_str, first, first_fee, 
+		additional, additional_fee, store_id, add_time, update_time
+		FROM delivery_rule
+		WHERE delivery_id=#{deliveryId} AND store_id=#{storeId}
+		ORDER BY id ASC
+	</select>
+	
+	<delete id="deleteByDeliveryId">
+		DELETE FROM delivery_rule WHERE delivery_id=#{deliveryId} AND store_id=#{storeId}
+	</delete>
+	
+</mapper>

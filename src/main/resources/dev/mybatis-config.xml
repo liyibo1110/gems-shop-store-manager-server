@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+		<setting name="logPrefix" value="dao." />
+	</settings>
+
+	<typeAliases>
+		
+		<typeAlias alias="StoreUser" type="com.liyibo1110.gemsshop.store.manager.server.entity.StoreUser" />
+		<typeAlias alias="Category" type="com.liyibo1110.gemsshop.store.manager.server.entity.Category" />
+		<typeAlias alias="Delivery" type="com.liyibo1110.gemsshop.store.manager.server.entity.Delivery" />
+		<typeAlias alias="DeliveryRule" type="com.liyibo1110.gemsshop.store.manager.server.entity.DeliveryRule" />
+		<typeAlias alias="Region" type="com.liyibo1110.gemsshop.store.manager.server.entity.Region" />
+	</typeAliases>
+	<!-- <typeHandlers>
+		<typeHandler
+			handler="com.liyibo1110.gemsshop.store.manager.server.typehandler.IntegerArrayTypeHandler"
+			javaType="[Ljava.lang.Integer;" jdbcType="INTEGER" />
+	</typeHandlers> -->
+	
+</configuration> 

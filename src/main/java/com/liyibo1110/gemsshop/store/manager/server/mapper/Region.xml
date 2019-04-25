@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+						
+<mapper namespace="com.liyibo1110.gemsshop.store.manager.server.dao.RegionDao"> 
+	
+	<select id="getAllProvince" resultType="Region"> 
+		SELECT id, pid, name, level, pinyin
+		FROM region
+		<where>
+			level=1
+		</where>
+		ORDER BY id ASC
+	</select>
+	
+	<select id="getAllCity" resultType="Region"> 
+		SELECT id, pid, name, level, pinyin
+		FROM region
+		<where>
+			level=2
+		</where>
+		ORDER BY id ASC
+	</select>
+	
+</mapper>

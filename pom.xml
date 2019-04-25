@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.1.4.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.liyibo1110.gemsshop.store.manager.server</groupId>
+	<artifactId>gems-shop-store-manager-server</artifactId>
+	<version>1.0.0</version>
+	<name>gems-shop-store-manager-server</name>
+	<description>gems-shop-store-manager-server</description>
+
+	<properties>
+		<java.version>1.8</java.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis.spring.boot</groupId>
+			<artifactId>mybatis-spring-boot-starter</artifactId>
+			<version>2.0.0</version>
+		</dependency>
+		<dependency>
+    		<groupId>org.springframework.boot</groupId>
+    		<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+    		<groupId>org.apache.commons</groupId>
+    		<artifactId>commons-lang3</artifactId>
+		</dependency>
+		
+		<dependency>
+    		<groupId>org.apache.commons</groupId>
+    		<artifactId>commons-text</artifactId>
+    		<version>1.3</version>
+		</dependency>
+		
+		<dependency>
+    		<groupId>org.apache.commons</groupId>
+    		<artifactId>commons-collections4</artifactId>
+    		<version>4.1</version>
+		</dependency>
+		
+		<dependency>
+    		<groupId>commons-io</groupId>
+    		<artifactId>commons-io</artifactId>
+    		<version>2.5</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>1.10</version>
+		</dependency>
+		
+		<dependency>
+    		<groupId>com.alibaba</groupId>
+    		<artifactId>druid</artifactId>
+    		<version>1.1.2</version>
+		</dependency>
+		
+		<dependency>
+    		<groupId>com.alibaba</groupId>
+    		<artifactId>fastjson</artifactId>
+    		<version>1.2.37</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		
+		<dependency>
+    		<groupId>ch.qos.logback</groupId>
+    		<artifactId>logback-core</artifactId>
+		</dependency>
+		
+		<dependency>
+    		<groupId>ch.qos.logback</groupId>
+    		<artifactId>logback-classic</artifactId>
+		</dependency>
+		
+		<!-- crypt -->
+		<dependency>
+    		<groupId>org.mindrot</groupId>
+    		<artifactId>jbcrypt</artifactId>
+    		<version>0.4</version>
+    	</dependency>
+	</dependencies>
+
+	<profiles>  
+    	<profile>  
+       		<!-- 本地开发环境 -->  
+        	<id>dev</id>  
+        	<properties>  
+            	<profiles.active>dev</profiles.active>  
+        	</properties>  
+        	<activation>  
+            	<activeByDefault>true</activeByDefault>  
+        	</activation>  
+    	</profile>  
+    	<profile>  
+        	<!-- 测试 -->  
+        	<id>test</id>  
+        	<properties>  
+            	<profiles.active>test</profiles.active> 
+        	</properties>  
+    	</profile>  
+    	<profile>  
+        	<!-- 生产 --> 
+        	<id>prd</id>  
+        	<properties>  
+            	<profiles.active>prd</profiles.active> 
+        	</properties>  
+    	</profile>  
+	</profiles>
+
+	<build>
+		<finalName>gems-shop-store-manager-server</finalName>
+		<resources>
+			<resource>
+            	<directory>${basedir}/src/main/java</directory>
+                <includes>
+                	<include>**/*.xml</include>
+                </includes>
+            </resource>
+            <resource>  
+            	<directory>${basedir}/src/main/resources/${profiles.active}</directory>  
+        	</resource> 
+		
+			<!-- 必须还得把原始位置带上，同时排除全部，不然本地IDE目录会有问题，不会显示resources的全部目录 by liyibo 2017-11-02 -->
+			<resource>  
+            	<directory>${basedir}/src/main/resources</directory>  
+            	<excludes>
+            		<exclude>**/*</exclude>
+            	</excludes>
+        	</resource>
+        </resources>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
