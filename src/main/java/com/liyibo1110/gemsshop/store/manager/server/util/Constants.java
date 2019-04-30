@@ -34,4 +34,7 @@ public class Constants {
 	
 	public static final Integer OUTPUTDTO_ARGS_INVAILD_ERRORCODE = 201;	//参数非法，通用error
 	public static final String OUTPUTDTO_ARGS_INVAILD_ERRORCODE_MESSAGE = "参数非法";	
+	
+	public static final Integer OUTPUTDTO_UPLOAD_NO_FILE_ERRORCODE = 301;	//请求header中没有user_token字段
+	public static final String OUTPUTDTO_UPLOAD_NO_FILE_ERRORCODE_MESSAGE = "上传文件为空";
 }

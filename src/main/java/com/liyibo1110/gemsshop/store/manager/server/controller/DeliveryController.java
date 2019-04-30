@@ -15,6 +15,7 @@ import com.alibaba.fastjson.JSON;
 import com.liyibo1110.gemsshop.store.manager.server.dto.OutputDTO;
 import com.liyibo1110.gemsshop.store.manager.server.entity.Delivery;
 import com.liyibo1110.gemsshop.store.manager.server.entity.StoreUser;
+import com.liyibo1110.gemsshop.store.manager.server.service.delivery.DeliveryAllService;
 import com.liyibo1110.gemsshop.store.manager.server.service.delivery.DeliveryCountService;
 import com.liyibo1110.gemsshop.store.manager.server.service.delivery.DeliveryCreateService;
 import com.liyibo1110.gemsshop.store.manager.server.service.delivery.DeliveryGetByIdService;
@@ -35,6 +36,9 @@ public class DeliveryController {
 	private static Logger logger = LoggerFactory.getLogger(DeliveryController.class);
 	
 	@Autowired
+	private DeliveryAllService deliveryAllService;
+	
+	@Autowired
 	private DeliveryListService deliveryListService;
 	
 	@Autowired
@@ -48,6 +52,14 @@ public class DeliveryController {
 	
 	@Autowired
 	private DeliveryGetByIdService deliveryGetByIdService;
+	
+	@RequestMapping("/api/delivery/all")
+	public void all(HttpServletRequest request, HttpServletResponse response){
+		
+		StoreUser user = (StoreUser)request.getAttribute(Constants.USER_ATTRIBUTE_NAME);
+		List<Delivery> list = deliveryAllService.all(user);
+		JsonUtils.outputJsonp(response, new OutputDTO<List<Delivery>>(Constants.OUTPUTDTO_SUCCESS_STATUS, list));
+	}
 	
 	@RequestMapping("/api/delivery/list")
 	public void list(HttpServletRequest request, HttpServletResponse response,

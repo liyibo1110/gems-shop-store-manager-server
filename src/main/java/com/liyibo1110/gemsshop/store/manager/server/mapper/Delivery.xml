@@ -4,6 +4,16 @@
 						
 <mapper namespace="com.liyibo1110.gemsshop.store.manager.server.dao.DeliveryDao"> 
 	
+	<select id="getAll" resultType="Delivery"> 
+		SELECT id, name, method, sort, store_id, 
+		add_time, update_time
+		FROM delivery
+		<where>
+			store_id=#{storeId}
+		</where>
+		ORDER BY id ASC
+	</select>
+	
 	<select id="getList" resultType="Delivery"> 
 		SELECT id, name, method, sort, store_id, 
 		add_time, update_time

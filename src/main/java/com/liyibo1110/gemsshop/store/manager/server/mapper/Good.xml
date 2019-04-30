@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+						
+<mapper namespace="com.liyibo1110.gemsshop.store.manager.server.dao.GoodDao"> 
+	
+	<select id="getList" resultType="Good"> 
+		SELECT g.id, g.name, g.category_id, g.sales_actual, g.sort, 
+		g.status, g.add_time, cg.name AS category_name, GROUP_CONCAT(uf.storage) AS storage_str, GROUP_CONCAT(uf.file_url) AS file_url_str, 
+		GROUP_CONCAT(uf.file_name) AS file_name_str, GROUP_CONCAT(uf.extension) AS extension_str
+		FROM goods AS g
+		INNER JOIN category AS cg ON g.category_id=cg.id
+		LEFT JOIN goods_image AS gi ON g.id=gi.good_id
+		LEFT JOIN upload_file AS uf ON gi.image_id=uf.id
+		<where>
+			g.store_id=#{storeId}
+			<if test="name != null">
+				AND g.name LIKE concat('%',#{name},'%')
+			</if>
+		</where>
+		GROUP BY g.id, g.name, g.category_id, g.sales_actual, g.sort, 
+		g.status, g.add_time
+		ORDER BY g.id ASC LIMIT #{offset}, #{limit}
+	</select>
+	
+	<select id="getCount" resultType="int"> 
+		SELECT COUNT(*)
+		FROM goods
+		<where>
+			store_id=#{storeId}
+			<if test="name != null">
+				AND name LIKE concat('%',#{name},'%')
+			</if>
+		</where>
+	</select>
+	
+	<select id="getById" resultType="Good"> 
+		SELECT g.id, g.name, g.category_id, g.spec_type, g.deduct_stock_type, 
+		g.content, g.sales_initial, g.sales_actual, g.sort, g.delivery_id,
+		g.status, gs.no, gs.price, gs.line_price, gs.stock_num,
+		gs.sales, gs.weight
+		FROM goods AS g
+		INNER JOIN goods_spec AS gs ON gs.good_id=g.id
+		WHERE g.store_id=#{storeId} AND gs.store_id=#{storeId} AND g.id=#{id}
+	</select>
+	
+	<insert id="create" parameterType="Good" useGeneratedKeys="true" keyProperty="id">
+    	INSERT INTO goods(name, category_id, spec_type, deduct_stock_type, content, 
+    	sales_initial, sales_actual, sort, delivery_id, status, 
+    	deleted, store_id, add_time, update_time)
+		VALUES(#{good.name}, #{good.categoryId}, #{good.specType}, #{good.deductStockType}, #{good.content}, 
+		#{good.salesInitial}, 0, #{good.sort}, #{good.deliveryId}, #{good.status}, 
+		0, #{good.storeId}, NOW(), NOW())
+    </insert>
+	
+	<update id="modify">
+    	UPDATE goods
+		SET name=#{name}, category_id=#{categoryId}, spec_type=#{specType}, deduct_stock_type=#{deductStockType}, content=#{content}, 
+		sales_initial=#{salesInitial}, sort=#{sort}, delivery_id=#{deliveryId}, status=#{status}, 
+		update_time=NOW()
+		WHERE id=#{id} AND store_id=#{storeId}
+    </update>
+	
+</mapper>

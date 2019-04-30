@@ -14,6 +14,8 @@ import com.liyibo1110.gemsshop.store.manager.server.entity.DeliveryRule;
  */
 public interface DeliveryDao {
 	
+	public List<Delivery> getAll(@Param("storeId")Integer storeId);
+	
 	public List<Delivery> getList(@Param("storeId")Integer storeId, 
 								@Param("name")String name, 
 								@Param("limit")Integer limit,

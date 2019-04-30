@@ -2,7 +2,6 @@ package com.liyibo1110.gemsshop.store.manager.server.dao.impl;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
@@ -21,6 +20,11 @@ import com.liyibo1110.gemsshop.store.manager.server.entity.DeliveryRule;
 public class DeliveryDaoImpl extends AbstractDao implements DeliveryDao{
 
 	private static Logger logger = LoggerFactory.getLogger(DeliveryDaoImpl.class);
+	
+	public List<Delivery> getAll(Integer storeId){
+		DeliveryDao deliveryDao = gemsShopSqlSessionTemplate.getMapper(DeliveryDao.class);
+		return deliveryDao.getAll(storeId);
+	}
 	
 	public List<Delivery> getList(Integer storeId, String name, 
 								Integer limit, Integer offset){

@@ -25,6 +25,11 @@ public class CategoryDaoImpl extends AbstractDao implements CategoryDao{
 		CategoryDao categoryDao = gemsShopSqlSessionTemplate.getMapper(CategoryDao.class);
 		return categoryDao.getList(storeId, name, limit, offset);
 	}
+	
+	public List<Category> getAll(Integer storeId){
+		CategoryDao categoryDao = gemsShopSqlSessionTemplate.getMapper(CategoryDao.class);
+		return categoryDao.getAll(storeId);
+	}
 
 	public int getCount(Integer storeId, String name) {
 		CategoryDao categoryDao = gemsShopSqlSessionTemplate.getMapper(CategoryDao.class);

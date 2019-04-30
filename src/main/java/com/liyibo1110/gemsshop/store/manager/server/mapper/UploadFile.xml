@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+						
+<mapper namespace="com.liyibo1110.gemsshop.store.manager.server.dao.UploadFileDao"> 
+	
+	<select id="getList" resultType="UploadFile"> 
+		SELECT id, group_id, file_url, file_name, store_id
+		FROM upload_file
+		<where>
+			store_id=#{storeId}
+			<if test="groupId != null">
+				AND group_id=#{groupId}
+			</if>
+		</where>
+		ORDER BY id ASC
+	</select>
+	
+	<select id="getByGoodId" resultType="UploadFile"> 
+		SELECT uf.id, uf.group_id, uf.file_url, uf.file_name, uf.store_id
+		FROM upload_file AS uf
+		INNER JOIN goods_image AS gi ON uf.id=gi.image_id
+		WHERE uf.store_id=#{storeId} AND gi.store_id=#{storeId} AND gi.good_id=#{goodId}
+		ORDER BY id ASC
+	</select>
+	
+	<update id="modify">
+    	UPDATE upload_file
+		SET group_id=#{groupId}, update_time=NOW()
+		WHERE INSTR(CONCAT(',',#{ids},','),CONCAT(',',id,','))
+		AND store_id=#{storeId}
+    </update>
+	
+	<insert id="create">
+    	INSERT INTO upload_file(storage, group_id, file_url, file_name, file_size, 
+    							file_type, extension, deleted, store_id, add_time, 
+    							update_time)
+		VALUES(#{storage}, 0, #{fileUrl}, #{fileName}, #{fileSize}, 
+			#{fileType}, #{extension}, 0, #{storeId}, NOW(), 
+			NOW())
+    </insert>
+	
+</mapper>

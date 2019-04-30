@@ -15,7 +15,16 @@
 			</if>
 		</where>
 		ORDER BY id ASC LIMIT #{offset}, #{limit}
-		
+	</select>
+	
+	<select id="getAll" resultType="Category"> 
+		SELECT id, name, image_id, sort, store_id, 
+		add_time, update_time
+		FROM category
+		<where>
+			store_id=#{storeId}
+		</where>
+		ORDER BY id ASC
 	</select>
 	
 	<select id="getCount" resultType="int"> 

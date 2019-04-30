@@ -18,6 +18,8 @@ public interface CategoryDao {
 								@Param("limit")Integer limit,
 								@Param("offset")Integer offset);	
 	
+	public List<Category> getAll(@Param("storeId")Integer storeId);	
+	
 	public int getCount(@Param("storeId")Integer storeId, 
 		    				@Param("name")String name);	
 	

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.liyibo1110.gemsshop.store.manager.server.dto.OutputDTO;
 import com.liyibo1110.gemsshop.store.manager.server.entity.Category;
 import com.liyibo1110.gemsshop.store.manager.server.entity.StoreUser;
+import com.liyibo1110.gemsshop.store.manager.server.service.category.CategoryAllService;
 import com.liyibo1110.gemsshop.store.manager.server.service.category.CategoryCountService;
 import com.liyibo1110.gemsshop.store.manager.server.service.category.CategoryCreateService;
 import com.liyibo1110.gemsshop.store.manager.server.service.category.CategoryListService;
@@ -32,6 +33,9 @@ public class CategoryController {
 	private static Logger logger = LoggerFactory.getLogger(CategoryController.class);
 	
 	@Autowired
+	private CategoryAllService categoryAllService;
+	
+	@Autowired
 	private CategoryListService categoryListService;
 	
 	@Autowired
@@ -42,6 +46,14 @@ public class CategoryController {
 	
 	@Autowired
 	private CategoryModifyService categoryModifyService;
+	
+	@RequestMapping("/api/category/all")
+	public void list(HttpServletRequest request, HttpServletResponse response){
+		
+		StoreUser user = (StoreUser)request.getAttribute(Constants.USER_ATTRIBUTE_NAME);
+		List<Category> list = categoryAllService.all(user);
+		JsonUtils.outputJsonp(response, new OutputDTO<List<Category>>(Constants.OUTPUTDTO_SUCCESS_STATUS, list));
+	}
 	
 	@RequestMapping("/api/category/list")
 	public void list(HttpServletRequest request, HttpServletResponse response,

@@ -7,9 +7,12 @@
 	</settings>
 
 	<typeAliases>
-		
 		<typeAlias alias="StoreUser" type="com.liyibo1110.gemsshop.store.manager.server.entity.StoreUser" />
 		<typeAlias alias="Category" type="com.liyibo1110.gemsshop.store.manager.server.entity.Category" />
+		<typeAlias alias="Good" type="com.liyibo1110.gemsshop.store.manager.server.entity.Good" />
+		<typeAlias alias="GoodSpec" type="com.liyibo1110.gemsshop.store.manager.server.entity.GoodSpec" />
+		<typeAlias alias="UploadGroup" type="com.liyibo1110.gemsshop.store.manager.server.entity.UploadGroup" />
+		<typeAlias alias="UploadFile" type="com.liyibo1110.gemsshop.store.manager.server.entity.UploadFile" />
 		<typeAlias alias="Delivery" type="com.liyibo1110.gemsshop.store.manager.server.entity.Delivery" />
 		<typeAlias alias="DeliveryRule" type="com.liyibo1110.gemsshop.store.manager.server.entity.DeliveryRule" />
 		<typeAlias alias="Region" type="com.liyibo1110.gemsshop.store.manager.server.entity.Region" />

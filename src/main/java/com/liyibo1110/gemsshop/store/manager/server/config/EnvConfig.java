@@ -11,13 +11,18 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 public class EnvConfig {
 
 	private boolean cronEnabled;
-
+	private String uploadGoodImagePath;
+	
 	public boolean isCronEnabled() {
 		return cronEnabled;
 	}
-
 	public void setCronEnabled(boolean cronEnabled) {
 		this.cronEnabled = cronEnabled;
 	}
-
+	public String getUploadGoodImagePath() {
+		return uploadGoodImagePath;
+	}
+	public void setUploadGoodImagePath(String uploadGoodImagePath) {
+		this.uploadGoodImagePath = uploadGoodImagePath;
+	}
 }
