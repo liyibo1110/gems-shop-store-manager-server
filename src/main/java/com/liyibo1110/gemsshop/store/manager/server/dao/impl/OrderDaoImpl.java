@@ -2,6 +2,7 @@ package com.liyibo1110.gemsshop.store.manager.server.dao.impl;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
@@ -23,7 +24,7 @@ public class OrderDaoImpl extends AbstractDao implements OrderDao{
 	@Override
 	public List<Order> getList(Integer storeId, Integer payStatus,
 							   Integer deliveryStatus, Integer receiptStatus,
-								Integer limit, Integer offset){
+							   Integer limit, Integer offset){
 		OrderDao dao = gemsShopSqlSessionTemplate.getMapper(OrderDao.class);
 		return dao.getList(storeId, payStatus, deliveryStatus, receiptStatus, limit, offset);
 	}
@@ -33,6 +34,18 @@ public class OrderDaoImpl extends AbstractDao implements OrderDao{
 			   Integer deliveryStatus, Integer receiptStatus) {
 		OrderDao dao = gemsShopSqlSessionTemplate.getMapper(OrderDao.class);
 		return dao.getCount(storeId, payStatus, deliveryStatus, receiptStatus);
+	}
+	
+	@Override
+	public Order getById(Integer storeId, Integer id) {
+		OrderDao dao = gemsShopSqlSessionTemplate.getMapper(OrderDao.class);
+		return dao.getById(storeId, id);
+	}
+	
+	@Override
+	public int modifyDeliveryStatus(Integer storeId, Integer id, String companyName, String no) {
+		OrderDao dao = gemsShopSqlSessionTemplate.getMapper(OrderDao.class);
+		return dao.modifyDeliveryStatus(storeId, id, companyName, no);
 	}
 	
 }

@@ -51,4 +51,24 @@
 		</where>
 	</select>
 	
+	<select id="getById" resultType="Order"> 
+		SELECT o.id, o.order_no, o.pay_price, o.pay_status, o.express_price, 
+		o.express_company, o.express_no, o.delivery_status, o.receipt_status, o.order_status, 
+		o.transaction_id, u.id AS user_id, u.nickname, o.add_time, o.update_time 
+		FROM orders AS o
+		INNER JOIN users AS u ON o.user_id=u.id
+		<where>
+			o.store_id=#{storeId}
+			AND o.id=#{id}
+		</where>
+	</select>
+	
+	<update id="modifyDeliveryStatus">
+    	UPDATE orders
+		SET express_company=#{companyName}, express_no=#{no}, 
+		delivery_status=20, delivery_time=NOW(), 
+		update_time=NOW()
+		WHERE id=#{id} AND store_id=#{storeId}
+    </update>
+	
 </mapper>

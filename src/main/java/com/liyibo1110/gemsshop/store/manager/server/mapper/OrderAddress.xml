@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+						
+<mapper namespace="com.liyibo1110.gemsshop.store.manager.server.dao.OrderAddressDao"> 
+	
+	<select id="getByOrderId" resultType="OrderAddress"> 
+		SELECT oa.id, oa.name, oa.phone, r.merger_name, oa.detail
+		FROM orders_address AS oa
+		INNER JOIN orders AS o ON oa.order_id=o.id
+		INNER JOIN region AS r ON oa.region_id=r.id
+		<where>
+			oa.store_id=#{storeId}
+			<if test="orderId != null">
+				AND oa.order_id=#{orderId}
+			</if>
+		</where>
+		ORDER BY oa.id ASC LIMIT 1
+	</select>
+</mapper>

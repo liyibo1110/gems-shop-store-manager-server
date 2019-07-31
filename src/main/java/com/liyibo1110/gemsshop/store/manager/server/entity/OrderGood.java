@@ -31,7 +31,7 @@ public class OrderGood {
 	private Timestamp addTime;
 	
 	//关联图片表
-	private List<UploadFile> fileList;
+	private UploadFile file;
 	private String storageStr;
 	private String fileUrlStr;
 	private String fileNameStr;
@@ -157,11 +157,11 @@ public class OrderGood {
 	public void setAddTime(Timestamp addTime) {
 		this.addTime = addTime;
 	}
-	public List<UploadFile> getFileList() {
-		return fileList;
+	public UploadFile getFile() {
+		return file;
 	}
-	public void setFileList(List<UploadFile> fileList) {
-		this.fileList = fileList;
+	public void setFile(UploadFile file) {
+		this.file = file;
 	}
 	public String getStorageStr() {
 		return storageStr;

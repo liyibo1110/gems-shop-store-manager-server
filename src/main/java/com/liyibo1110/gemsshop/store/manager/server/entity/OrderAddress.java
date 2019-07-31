@@ -18,6 +18,9 @@ public class OrderAddress {
 	
 	private Timestamp addTime;
 
+	//关联region表
+	private String mergerName;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -93,7 +96,6 @@ public class OrderAddress {
 	public Integer getStoreId() {
 		return storeId;
 	}
-
 	public void setStoreId(Integer storeId) {
 		this.storeId = storeId;
 	}
@@ -105,8 +107,12 @@ public class OrderAddress {
 	public void setAddTime(Timestamp addTime) {
 		this.addTime = addTime;
 	}
-	
-	public static void main(String[] args) {
-		
+
+	public String getMergerName() {
+		return mergerName;
+	}
+
+	public void setMergerName(String mergerName) {
+		this.mergerName = mergerName;
 	}
 }

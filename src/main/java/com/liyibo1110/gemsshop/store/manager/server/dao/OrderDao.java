@@ -25,4 +25,12 @@ public interface OrderDao {
 						@Param("deliveryStatus")Integer deliveryStatus, 
 						@Param("receiptStatus")Integer receiptStatus);	
 	
+	public Order getById(@Param("storeId")Integer storeId, 
+			 			 @Param("id")Integer id);
+	
+	public int modifyDeliveryStatus(@Param("storeId")Integer storeId, 
+									@Param("id")Integer id, 
+			 						@Param("companyName")String companyName,
+			 						@Param("no")String no);
+	
 }

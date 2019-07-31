@@ -11,11 +11,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.liyibo1110.gemsshop.store.manager.server.dto.OrderDTO;
 import com.liyibo1110.gemsshop.store.manager.server.dto.OutputDTO;
 import com.liyibo1110.gemsshop.store.manager.server.entity.Order;
 import com.liyibo1110.gemsshop.store.manager.server.entity.StoreUser;
 import com.liyibo1110.gemsshop.store.manager.server.service.order.OrderCountService;
+import com.liyibo1110.gemsshop.store.manager.server.service.order.OrderGetByIdService;
 import com.liyibo1110.gemsshop.store.manager.server.service.order.OrderListService;
+import com.liyibo1110.gemsshop.store.manager.server.service.order.OrderModifyDeliveryStatusService;
 import com.liyibo1110.gemsshop.store.manager.server.util.Constants;
 import com.liyibo1110.gemsshop.store.manager.server.util.JsonUtils;
 
@@ -34,6 +37,12 @@ public class OrderController {
 	
 	@Autowired
 	private OrderCountService orderCountService;
+	
+	@Autowired
+	private OrderGetByIdService orderGetByIdService;
+	
+	@Autowired
+	private OrderModifyDeliveryStatusService orderModifyDeliveryStatusService;
 	
 	@RequestMapping("/api/order/list")
 	public void list(HttpServletRequest request, HttpServletResponse response,
@@ -56,4 +65,24 @@ public class OrderController {
 		
 		JsonUtils.outputJsonp(response, new OutputDTO<Integer>(Constants.OUTPUTDTO_SUCCESS_STATUS, count));
 	}
+	
+	@RequestMapping("/api/order/getById")
+	public void getById(HttpServletRequest request, HttpServletResponse response,
+			Integer id){
+		
+		StoreUser user = (StoreUser)request.getAttribute(Constants.USER_ATTRIBUTE_NAME);
+		OrderDTO dto = orderGetByIdService.get(user, id);
+		JsonUtils.outputJsonp(response, new OutputDTO<OrderDTO>(Constants.OUTPUTDTO_SUCCESS_STATUS, dto));
+	}
+	
+	@RequestMapping("/api/order/modifyDeliveryStatus")
+	public void modifyDeliveryStatus(HttpServletRequest request, HttpServletResponse response,
+						Integer id, String companyName, String no){
+		StoreUser user = (StoreUser)request.getAttribute(Constants.USER_ATTRIBUTE_NAME);
+		logger.info("companyName:" + companyName);
+		logger.info("no:" + no);
+		Integer result = orderModifyDeliveryStatusService.modify(user, id, companyName, no);
+		JsonUtils.outputJsonp(response, new OutputDTO<Integer>(Constants.OUTPUTDTO_SUCCESS_STATUS, result));
+	}
+	
 }

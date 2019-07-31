@@ -13,7 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.liyibo1110.gemsshop.store.manager.server.dto.OutputDTO;
-import com.liyibo1110.gemsshop.store.manager.server.entity.Delivery;
 import com.liyibo1110.gemsshop.store.manager.server.entity.Good;
 import com.liyibo1110.gemsshop.store.manager.server.entity.StoreUser;
 import com.liyibo1110.gemsshop.store.manager.server.service.good.GoodCountService;
