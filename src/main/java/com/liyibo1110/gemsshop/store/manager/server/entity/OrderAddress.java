@@ -105,4 +105,8 @@ public class OrderAddress {
 	public void setAddTime(Timestamp addTime) {
 		this.addTime = addTime;
 	}
+	
+	public static void main(String[] args) {
+		
+	}
 }

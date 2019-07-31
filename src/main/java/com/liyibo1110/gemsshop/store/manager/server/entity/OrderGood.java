@@ -157,4 +157,34 @@ public class OrderGood {
 	public void setAddTime(Timestamp addTime) {
 		this.addTime = addTime;
 	}
+	public List<UploadFile> getFileList() {
+		return fileList;
+	}
+	public void setFileList(List<UploadFile> fileList) {
+		this.fileList = fileList;
+	}
+	public String getStorageStr() {
+		return storageStr;
+	}
+	public void setStorageStr(String storageStr) {
+		this.storageStr = storageStr;
+	}
+	public String getFileUrlStr() {
+		return fileUrlStr;
+	}
+	public void setFileUrlStr(String fileUrlStr) {
+		this.fileUrlStr = fileUrlStr;
+	}
+	public String getFileNameStr() {
+		return fileNameStr;
+	}
+	public void setFileNameStr(String fileNameStr) {
+		this.fileNameStr = fileNameStr;
+	}
+	public String getExtensionStr() {
+		return extensionStr;
+	}
+	public void setExtensionStr(String extensionStr) {
+		this.extensionStr = extensionStr;
+	}
 }

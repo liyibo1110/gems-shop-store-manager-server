@@ -227,4 +227,7 @@ public class Order {
 		this.extensionStr = extensionStr;
 	}
 	
+	public static void main(String[] args) {
+		
+	}
 }
