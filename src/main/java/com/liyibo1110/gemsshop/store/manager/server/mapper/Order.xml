@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+						
+<mapper namespace="com.liyibo1110.gemsshop.store.manager.server.dao.OrderDao"> 
+	
+	<select id="getList" resultType="Order"> 
+		SELECT o.id, o.order_no, o.pay_price, o.pay_status, o.express_price, 
+		o.delivery_status, o.receipt_status, o.order_status, u.id AS user_id, u.nickname, o.add_time, o.update_time,
+		GROUP_CONCAT(og.good_id) AS goods_id_str, GROUP_CONCAT(og.good_name) AS goods_name_str, 
+		GROUP_CONCAT(og.price) AS goods_price_str, GROUP_CONCAT(og.total_num) AS goods_total_num_str, 
+		GROUP_CONCAT(uf.storage) AS storage_str, GROUP_CONCAT(uf.file_url) AS file_url_str, 
+		GROUP_CONCAT(uf.file_name) AS file_name_str, GROUP_CONCAT(uf.extension) AS extension_str
+		FROM orders AS o
+		INNER JOIN users AS u ON o.user_id=u.id
+		INNER JOIN orders_goods AS og ON og.order_id=o.id
+		INNER JOIN goods AS g ON g.id=og.good_id
+		LEFT JOIN goods_image AS gi ON g.id=gi.good_id
+		INNER JOIN upload_file AS uf ON gi.image_id=uf.id AND uf.main=1
+		<where>
+			o.store_id=#{storeId}
+			<if test="payStatus != null">
+				AND o.pay_status=#{payStatus}
+			</if>
+			<if test="deliveryStatus != null">
+				AND o.delivery_status=#{deliveryStatus}
+			</if>
+			<if test="receiptStatus != null">
+				AND o.receipt_status=#{receiptStatus}
+			</if>
+		</where>
+		GROUP BY o.id, o.order_no, o.pay_price, o.pay_status, o.express_price, 
+		o.delivery_status, o.receipt_status, o.order_status, u.id, u.nickname, o.add_time, o.update_time
+		ORDER BY o.id ASC LIMIT #{offset}, #{limit}
+	</select>
+	
+	<select id="getCount" resultType="int"> 
+		SELECT COUNT(*)
+		FROM orders
+		<where>
+			store_id=#{storeId}
+			<if test="payStatus != null">
+				AND pay_status=#{payStatus}
+			</if>
+			<if test="deliveryStatus != null">
+				AND delivery_status=#{deliveryStatus}
+			</if>
+			<if test="receiptStatus != null">
+				AND receipt_status=#{receiptStatus}
+			</if>
+		</where>
+	</select>
+	
+</mapper>
