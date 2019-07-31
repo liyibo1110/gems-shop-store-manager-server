@@ -19,12 +19,12 @@ public class GoodImageDaoImpl extends AbstractDao implements GoodImageDao{
 	
 	public int create(Integer storeId, Integer goodId,
 			  		Integer imageId) {
-		GoodImageDao goodImageDao = gemsShopSqlSessionTemplate.getMapper(GoodImageDao.class);
-		return goodImageDao.create(storeId, goodId, imageId);
+		GoodImageDao dao = gemsShopSqlSessionTemplate.getMapper(GoodImageDao.class);
+		return dao.create(storeId, goodId, imageId);
 	}
 	
 	public int deleteByGoodId(Integer storeId, Integer goodId) {
-		GoodImageDao goodImageDao = gemsShopSqlSessionTemplate.getMapper(GoodImageDao.class);
-		return goodImageDao.deleteByGoodId(storeId, goodId);
+		GoodImageDao dao = gemsShopSqlSessionTemplate.getMapper(GoodImageDao.class);
+		return dao.deleteByGoodId(storeId, goodId);
 	}
 }

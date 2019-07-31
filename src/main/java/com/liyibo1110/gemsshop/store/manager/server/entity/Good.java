@@ -26,6 +26,7 @@ public class Good {
 	
 	//关联其它
 	private String categoryName;
+	private Integer totalNum;
 	
 	//关联单规格表
 	private String no;
@@ -137,6 +138,12 @@ public class Good {
 	}
 	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
+	}
+	public Integer getTotalNum() {
+		return totalNum;
+	}
+	public void setTotalNum(Integer totalNum) {
+		this.totalNum = totalNum;
 	}
 	public String getNo() {
 		return no;

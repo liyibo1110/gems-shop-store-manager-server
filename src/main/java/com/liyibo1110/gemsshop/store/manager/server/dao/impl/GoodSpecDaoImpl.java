@@ -24,8 +24,8 @@ public class GoodSpecDaoImpl extends AbstractDao implements GoodSpecDao{
 			  		String no, BigDecimal price,
 			  		BigDecimal linePrice, Integer stockNum,
 			  		BigDecimal weight) {
-		GoodSpecDao goodSpecDao = gemsShopSqlSessionTemplate.getMapper(GoodSpecDao.class);
-		return goodSpecDao.create(storeId, goodId, no, price, linePrice, 
+		GoodSpecDao dao = gemsShopSqlSessionTemplate.getMapper(GoodSpecDao.class);
+		return dao.create(storeId, goodId, no, price, linePrice, 
 								stockNum, weight);
 	}
 
@@ -34,8 +34,8 @@ public class GoodSpecDaoImpl extends AbstractDao implements GoodSpecDao{
 			  		String no, BigDecimal price,
 			  		BigDecimal linePrice, Integer stockNum,
 			  		BigDecimal weight) {
-		GoodSpecDao goodSpecDao = gemsShopSqlSessionTemplate.getMapper(GoodSpecDao.class);
-		return goodSpecDao.modify(storeId, goodId, no, price, linePrice, 
+		GoodSpecDao dao = gemsShopSqlSessionTemplate.getMapper(GoodSpecDao.class);
+		return dao.modify(storeId, goodId, no, price, linePrice, 
 							stockNum, weight);
 	}
 	

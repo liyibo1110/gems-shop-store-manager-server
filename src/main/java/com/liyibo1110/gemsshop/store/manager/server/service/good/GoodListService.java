@@ -21,8 +21,6 @@ public class GoodListService extends BaseGoodService{
 							Integer limit, Integer offset){
 	
 		List<Good> list = goodDao.getList(user.getStoreId(), name, limit, offset);
-		//生成图片对象集合
-		List<UploadFile> fileList = new ArrayList<>();
 		for(Good g : list) {
 			String storageStr = g.getStorageStr();
 			String fileUrlStr = g.getFileUrlStr();
@@ -33,6 +31,9 @@ public class GoodListService extends BaseGoodService{
 			String[] fileUrls = StringUtils.split(fileUrlStr, ",");
 			String[] fileNames = StringUtils.split(fileNameStr, ",");
 			String[] extensions = StringUtils.split(extensionStr, ",");
+			//logger.info("storages.size:" + storages.length);
+			//生成图片对象集合
+			List<UploadFile> fileList = new ArrayList<>();
 			for(int i=0; i<storages.length; i++) {
 				UploadFile file = new UploadFile();
 				file.setStorage(Integer.parseInt(storages[i]));

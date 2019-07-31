@@ -21,20 +21,20 @@ public class UploadGroupDaoImpl extends AbstractDao implements UploadGroupDao{
 	private static Logger logger = LoggerFactory.getLogger(UploadGroupDaoImpl.class);
 	
 	public List<UploadGroup> getAll(Integer storeId){
-		UploadGroupDao uploadGroupDao = gemsShopSqlSessionTemplate.getMapper(UploadGroupDao.class);
-		return uploadGroupDao.getAll(storeId);
+		UploadGroupDao dao = gemsShopSqlSessionTemplate.getMapper(UploadGroupDao.class);
+		return dao.getAll(storeId);
 	}
 	
 	public int create(Integer storeId, Integer type,
 					String name, Integer sort) {
-		UploadGroupDao uploadGroupDao = gemsShopSqlSessionTemplate.getMapper(UploadGroupDao.class);
-		return uploadGroupDao.create(storeId, type, name, sort);
+		UploadGroupDao dao = gemsShopSqlSessionTemplate.getMapper(UploadGroupDao.class);
+		return dao.create(storeId, type, name, sort);
 	}
 
 	public int modify(Integer storeId, Integer id,
 			  		String name) {
-		UploadGroupDao uploadGroupDao = gemsShopSqlSessionTemplate.getMapper(UploadGroupDao.class);
-		return uploadGroupDao.modify(storeId, id, name);
+		UploadGroupDao dao = gemsShopSqlSessionTemplate.getMapper(UploadGroupDao.class);
+		return dao.modify(storeId, id, name);
 	}
 	
 }

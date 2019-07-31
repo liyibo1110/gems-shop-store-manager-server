@@ -16,6 +16,9 @@
 		<typeAlias alias="Delivery" type="com.liyibo1110.gemsshop.store.manager.server.entity.Delivery" />
 		<typeAlias alias="DeliveryRule" type="com.liyibo1110.gemsshop.store.manager.server.entity.DeliveryRule" />
 		<typeAlias alias="Region" type="com.liyibo1110.gemsshop.store.manager.server.entity.Region" />
+		<typeAlias alias="Order" type="com.liyibo1110.gemsshop.store.manager.server.entity.Order" />
+		<typeAlias alias="OrderAddress" type="com.liyibo1110.gemsshop.store.manager.server.entity.OrderAddress" />
+		<typeAlias alias="OrderGood" type="com.liyibo1110.gemsshop.store.manager.server.entity.OrderGood" />
 	</typeAliases>
 	<!-- <typeHandlers>
 		<typeHandler

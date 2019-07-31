@@ -23,20 +23,20 @@ public class UploadFileDaoImpl extends AbstractDao implements UploadFileDao{
 	
 	@Override
 	public List<UploadFile> getList(Integer storeId, Integer groupId){
-		UploadFileDao uploadFileDao = gemsShopSqlSessionTemplate.getMapper(UploadFileDao.class);
-		return uploadFileDao.getList(storeId, groupId);
+		UploadFileDao dao = gemsShopSqlSessionTemplate.getMapper(UploadFileDao.class);
+		return dao.getList(storeId, groupId);
 	}
 	
 	@Override
 	public List<UploadFile> getByGoodId(Integer storeId, Integer goodId){
-		UploadFileDao uploadFileDao = gemsShopSqlSessionTemplate.getMapper(UploadFileDao.class);
-		return uploadFileDao.getByGoodId(storeId, goodId);
+		UploadFileDao dao = gemsShopSqlSessionTemplate.getMapper(UploadFileDao.class);
+		return dao.getByGoodId(storeId, goodId);
 	}
 	
 	@Override
 	public int modify(Integer storeId, String ids, Integer groupId) {
-		UploadFileDao uploadFileDao = gemsShopSqlSessionTemplate.getMapper(UploadFileDao.class);
-		return uploadFileDao.modify(storeId, ids, groupId);
+		UploadFileDao dao = gemsShopSqlSessionTemplate.getMapper(UploadFileDao.class);
+		return dao.modify(storeId, ids, groupId);
 	}
 	
 	@Override
@@ -44,8 +44,8 @@ public class UploadFileDaoImpl extends AbstractDao implements UploadFileDao{
 			  		String fileUrl, String fileName,
 			  		Long fileSize, Integer fileType,
 			  		String extension) {
-		UploadFileDao uploadFileDao = gemsShopSqlSessionTemplate.getMapper(UploadFileDao.class);
-		return uploadFileDao.create(storeId, storage, fileUrl, fileName, fileSize, 
+		UploadFileDao dao = gemsShopSqlSessionTemplate.getMapper(UploadFileDao.class);
+		return dao.create(storeId, storage, fileUrl, fileName, fileSize, 
 								fileType, extension);
 	}
 	

@@ -23,26 +23,26 @@ public class GoodDaoImpl extends AbstractDao implements GoodDao{
 	@Override
 	public List<Good> getList(Integer storeId, String name, 
 								Integer limit, Integer offset){
-		GoodDao goodDao = gemsShopSqlSessionTemplate.getMapper(GoodDao.class);
-		return goodDao.getList(storeId, name, limit, offset);
+		GoodDao dao = gemsShopSqlSessionTemplate.getMapper(GoodDao.class);
+		return dao.getList(storeId, name, limit, offset);
 	}
 
 	@Override
 	public int getCount(Integer storeId, String name) {
-		GoodDao goodDao = gemsShopSqlSessionTemplate.getMapper(GoodDao.class);
-		return goodDao.getCount(storeId, name);
+		GoodDao dao = gemsShopSqlSessionTemplate.getMapper(GoodDao.class);
+		return dao.getCount(storeId, name);
 	}
 	
 	@Override
 	public Good getById(Integer id, Integer storeId) {
-		GoodDao goodDao = gemsShopSqlSessionTemplate.getMapper(GoodDao.class);
-		return goodDao.getById(id, storeId);
+		GoodDao dao = gemsShopSqlSessionTemplate.getMapper(GoodDao.class);
+		return dao.getById(id, storeId);
 	}
 	
 	@Override
 	public int create(Good good) {
-		GoodDao goodDao = gemsShopSqlSessionTemplate.getMapper(GoodDao.class);
-		return goodDao.create(good);
+		GoodDao dao = gemsShopSqlSessionTemplate.getMapper(GoodDao.class);
+		return dao.create(good);
 	}
 
 	@Override
@@ -52,8 +52,8 @@ public class GoodDaoImpl extends AbstractDao implements GoodDao{
 			  String content, Integer salesInitial,
 			  Integer sort,
 			  Integer deliveryId, Integer status) {
-		GoodDao goodDao = gemsShopSqlSessionTemplate.getMapper(GoodDao.class);
-		return goodDao.modify(storeId, id, name, categoryId, specType, 
+		GoodDao dao = gemsShopSqlSessionTemplate.getMapper(GoodDao.class);
+		return dao.modify(storeId, id, name, categoryId, specType, 
 							deductStockType, content, salesInitial, sort, 
 							deliveryId, status);
 	}

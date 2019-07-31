@@ -11,7 +11,7 @@
 		FROM goods AS g
 		INNER JOIN category AS cg ON g.category_id=cg.id
 		LEFT JOIN goods_image AS gi ON g.id=gi.good_id
-		LEFT JOIN upload_file AS uf ON gi.image_id=uf.id
+		INNER JOIN upload_file AS uf ON gi.image_id=uf.id AND uf.main=1
 		<where>
 			g.store_id=#{storeId}
 			<if test="name != null">

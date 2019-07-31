@@ -14,17 +14,17 @@ public class StoreUserDaoImpl extends AbstractDao implements StoreUserDao{
 	private static Logger logger = LoggerFactory.getLogger(StoreUserDaoImpl.class);
 	
 	public StoreUser getByUsername(String username) {
-		StoreUserDao storeUserDao = gemsShopSqlSessionTemplate.getMapper(StoreUserDao.class);
-		return storeUserDao.getByUsername(username);
+		StoreUserDao dao = gemsShopSqlSessionTemplate.getMapper(StoreUserDao.class);
+		return dao.getByUsername(username);
 	}
 	
 	public StoreUser getByToken(String token) {
-		StoreUserDao storeUserDao = gemsShopSqlSessionTemplate.getMapper(StoreUserDao.class);
-		return storeUserDao.getByToken(token);
+		StoreUserDao dao = gemsShopSqlSessionTemplate.getMapper(StoreUserDao.class);
+		return dao.getByToken(token);
 	}
 	
 	public int updatePassword(Integer id, String password) {
-		StoreUserDao storeUserDao = gemsShopSqlSessionTemplate.getMapper(StoreUserDao.class);
-		return storeUserDao.updatePassword(id, password);
+		StoreUserDao dao = gemsShopSqlSessionTemplate.getMapper(StoreUserDao.class);
+		return dao.updatePassword(id, password);
 	}
 }

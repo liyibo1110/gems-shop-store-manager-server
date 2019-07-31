@@ -21,13 +21,13 @@ public class RegionDaoImpl extends AbstractDao implements RegionDao{
 	private static Logger logger = LoggerFactory.getLogger(RegionDaoImpl.class);
 	
 	public List<Region> getAllProvince(){
-		RegionDao regionDao = gemsShopSqlSessionTemplate.getMapper(RegionDao.class);
-		return regionDao.getAllProvince();
+		RegionDao dao = gemsShopSqlSessionTemplate.getMapper(RegionDao.class);
+		return dao.getAllProvince();
 	}
 	
 	public List<Region> getAllCity(){
-		RegionDao regionDao = gemsShopSqlSessionTemplate.getMapper(RegionDao.class);
-		return regionDao.getAllCity();
+		RegionDao dao = gemsShopSqlSessionTemplate.getMapper(RegionDao.class);
+		return dao.getAllCity();
 	}
 	
 }

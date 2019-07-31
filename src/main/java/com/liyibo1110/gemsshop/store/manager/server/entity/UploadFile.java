@@ -14,10 +14,15 @@ public class UploadFile {
 	private Integer fileType;
 	private String extension;
 	private Integer deleted;
-	private Integer storeId;
+	private Integer main;
 	
+	private Integer storeId;
 	private Timestamp addTime;
 	private Timestamp updateTime;
+	
+	//冗余关联
+	private Integer goodsId;
+	private String goodsName;
 	
 	public Integer getId() {
 		return id;
@@ -73,6 +78,12 @@ public class UploadFile {
 	public void setDeleted(Integer deleted) {
 		this.deleted = deleted;
 	}
+	public Integer getMain() {
+		return main;
+	}
+	public void setMain(Integer main) {
+		this.main = main;
+	}
 	public Integer getStoreId() {
 		return storeId;
 	}
@@ -91,4 +102,17 @@ public class UploadFile {
 	public void setUpdateTime(Timestamp updateTime) {
 		this.updateTime = updateTime;
 	}
+	public Integer getGoodsId() {
+		return goodsId;
+	}
+	public void setGoodsId(Integer goodsId) {
+		this.goodsId = goodsId;
+	}
+	public String getGoodsName() {
+		return goodsName;
+	}
+	public void setGoodsName(String goodsName) {
+		this.goodsName = goodsName;
+	}
+	
 }
